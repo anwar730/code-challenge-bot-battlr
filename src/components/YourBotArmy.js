@@ -1,7 +1,7 @@
 import React from "react";
 import BotCard from "./BotCard";
 
-function YourBotArmy() {
+function YourBotArmy({bots,onClickBot,onDelete}) {
   // console.log(bots)
   //your bot army code here...
 
@@ -13,7 +13,7 @@ function YourBotArmy() {
       <div className="ui five column grid">
         <div className="row bot-army-row">
           {/*...and here...*/}
-          
+          {bots.map(bot => <BotCard key={bot.id} bot={bot} onClickBot={onClickBot} onDelete={onDelete}/>)}
         </div>
       </div>
     </div>

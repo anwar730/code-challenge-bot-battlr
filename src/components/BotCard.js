@@ -9,13 +9,20 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot }) {
+function BotCard({ bot ,onClickBot,onDelete}) {
+  function handleDelete(bot){
+  fetch (`http://localhost:8002/bots/${bot.id}`,{
+    method:"DELETE"
+  })
+  onDelete(bot)
+  }
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log('hello')}
+        onClick={() => onClickBot(bot.id) }
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -48,7 +55,7 @@ function BotCard({ bot }) {
               <button
                 className="ui mini red button"
                 onClick={() =>
-                  console.log("add code to connect event listener")
+                  handleDelete(bot)
                 }
               >
                 x
